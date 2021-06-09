@@ -2,9 +2,11 @@
 ---
 authors: 
   -
+    affiliation: "University of Duisburg-Essen"
     family-names: Schmidt
     given-names: Felix
   -
+    affiliation: "Vrije Universiteit Amsterdam"
     family-names: Vanderfeesten
     given-names: Maurice
     orcid: "https://orcid.org/0000-0002-5119-3514"

@@ -17,13 +17,18 @@
 \usepackage{verbatim}
 \usepackage{caption}
 \usepackage{subcaption}
-
+\usepackage{academicons}
+\usepackage{xcolor}
 \usepackage{float}
 \restylefloat{table}
-
+\newcommand{\orcid}[1]{\href{https://orcid.org/#1}{\textcolor[HTML]{A6CE39}{\aiOrcid}}} 
+\usepackage[
+    type={CC},
+    modifier={by},
+    version={4.0},
+]{doclicense}
 
 \title{Evaluation on accuracy of mapping science to the United Nations' Sustainable Development Goals (SDGs) of the Aurora SDG queries}
-
 
 \author{
   Felix Schmidt \\
@@ -38,6 +43,7 @@ Maurice Vanderfeesten \\
   Vrije Universiteit Amsterdam\\
   Amsterdam, The Netherlands \\
   \texttt{maurice.vanderfeesten@vu.nl} \\
+  \orcid{0000-0002-5119-3514}\\
   %% \AND
   %% Coauthor \\
   %% Affiliation \\
@@ -54,6 +60,7 @@ Maurice Vanderfeesten \\
   %% Address \\
   %% \texttt{email} \\
 }
+
 
 \begin{document}
 \maketitle
@@ -259,7 +266,7 @@ In  figure \ref{heatmapoverlapv5} we see the heat-map for the overlap between di
 
 With a maximum overlap of 8.8\% within the 15.8\% of multi-labeled publications, we can conclude that the overlap between publication in the SDG result sets are very small. Inversely this means that the differences between the SDGs are big enough. This is helpful information that gives us confidence that we can define clear classes in the corpus of publications which is very useful for machine learning. This enables us to train a text-classifier that is able to distinguish a text on the level of these 17 SDG goals.
 
-\paragraph{Overlap on the level of the targets withing Aurora SDG queries v5}
+\paragraph{Overlap on the level of the targets within Aurora SDG queries v5}
 Next we want to look deeper in the 15.8\% of the publications with overlap of the Aurora SDG queries v5, and see the how many of the targets show overlap. We have created 170 sub-queries, one for each of the targets in the 17 goals. We want to know how many of the publications in the result set for target 1.1 also appear in target 1.2, etc. We also look at the targets outside the parent SDG goal, where we want to know how many of the publications in the result set for target 1.1 appear in target 13.4, etc. This makes up to 14,365 combinations for the overlap between the targets.
 
 We want to know how big the overlap is of the publications on the level of the targets. We calculated this by looking at the percentage of publications that show overlap between SDG target $i.x$ and SDG target $j.y$. Then we created buckets of 0.1\%, to see the percentage of the 14,365 target combinations that share publications 0\% to 0.1\% overlap, from 0.1\% to 0.2\%, etc. We limited the buckets to 5\%.
@@ -314,7 +321,7 @@ The 2021 version is a different version, created by Science Metrix, lead by Maxi
 
 We want to know the overlap in numbers of publications of the result sets of the different queries of each SDG, between Elsevier SDG queries\footnote{Elsevier SDG Queries only account for 16 of the SDGs.} version 2020 and version 2021?
 
-Maxime calculated the difference between the result sets and plotted them in venn diagrams.
+Science Metrix calculated the difference between the result sets and plotted them in venn diagrams.
 
 \begin{figure}[H]
     \centering
@@ -494,7 +501,8 @@ and
 \begin{equation*}
     \text{robustness} = \frac{\text{number of publications in v4 and v5}}{\text{number of publications in v4 or v5}}\cdot100\%
 \end{equation*}
-The change of cardinality gives a measure for how the number of results change from v4 to v5, the robustness a measure for the shift of the results to different publications.
+The change of cardinality gives a measure for how the number of results changes from v4 to v5, the robustness a measure for the shift of the results to different publications.
+
 \begin{figure}[H]
 	\centering
   \includegraphics[width=0.75\textwidth]{figures/overlapv4vsv5barchartabsolute.pdf}
@@ -546,7 +554,7 @@ The aim in developing the new queries v5 from the v4 queries is to improve the r
 
 \subsubsection{Baseline data}
  
-For the calculations, we use the results from a comprehensive survey conducted among researchers based on the v4 queries \cite{vanderfeesten_survey_2020} and a basic survey among project members concerning the four SDGs with low robustness (cf. table \ref{robustnesstable})
+For the calculations, we use the results from a comprehensive survey conducted among researchers based on the v4 queries \cite{vanderfeesten_survey_2020} and a basic survey among project members concerning the four SDGs with low robustness (cf. table \ref{robustnesstable}).
 In the comprehensive survey, 10793 publications were checked by researchers regarding the correct classification to a specific SDG. Additionally, 4106 publications were suggested, that should be in the respective result sets.
 
 In the basic survey among project members, for each of the SDGs with a robustness below 10\% we randomly selected 100 publications, and checked these manually regarding the correct classification.
@@ -554,6 +562,8 @@ In the basic survey among project members, for each of the SDGs with a robustnes
 \subsubsection{Precision}
 
 We first calculate the precision from the basic survey for the four SDGs 02, 07, 09, and 17. The results are shown in table \ref{precisionv5surv}.
+
+\begin{minipage}[H]{0.49\textwidth}
 \begin{table}[H]
 \centering 
  \begin{tabular}{cccccccc}
@@ -568,8 +578,11 @@ We first calculate the precision from the basic survey for the four SDGs 02, 07,
 \end{tabular}
 \caption{Precision of the four SDGs with the lowest robustness (v5 queries).}\label{precisionv5surv}
 \end{table}
-From the same data one can also calculate the precision of the v4 queries. The results are shown in table \ref{precisionv4surv}. Note, that these results are less reliable, due to the small sample size, especially for SDG07 and SDG17. 
-From the numbers in tables \ref{precisionv5surv} and \ref{precisionv4surv} one can infer no improvement of the precision for the four SDGs with low robustness.
+\end{minipage}
+\begin{minipage}[H]{0.01\textwidth}
+\hfill
+\end{minipage}
+\begin{minipage}[H]{0.49\textwidth}
 \begin{table}[H]
 \centering 
  \begin{tabular}{cccccccc}
@@ -583,7 +596,13 @@ From the numbers in tables \ref{precisionv5surv} and \ref{precisionv4surv} one c
 \bottomrule
 \end{tabular}\caption{Precision of the four SDGs with the lowest robustness (v4 queries).}\label{precisionv4surv}
 \end{table}
+\end{minipage}
+
+From the same data one can also calculate the precision of the v4 queries. The results are shown in table \ref{precisionv4surv}. Note, that these results are less reliable, due to the small sample size, especially for SDG07 and SDG17. 
+From the numbers in tables \ref{precisionv5surv} and \ref{precisionv4surv} one can infer no improvement of the precision for the four SDGs with low robustness.
 The precision can also be calculated based on the old comprehensive survey among researchers. More publications were classified so the results should be more valid. Additionally, there are results for the other SDGs. The results are represented in tables  \ref{precisionv4survold} and \ref{precisionv5survold} for the v4 and v5 queries, respectively. Again, the results are more reliable for the version of the queries, which the survey was based on. In this case we have more data for v4 as the survey was conducted with publications from the v4 queries.
+
+\begin{minipage}[H]{0.45\textwidth}
 \begin{table}[H]
 \centering 
  \begin{tabular}{cccccc}
@@ -610,9 +629,16 @@ The precision can also be calculated based on the old comprehensive survey among
  \bottomrule
 \end{tabular}
 \caption{\centering{Precision (=y [\%]) per SDG for v4 queries, based on the comprehensive survey. \hspace{\textwidth}
-v4 precision: Mean=62.8722, Standard deviation=16.5418}}
+v4 precision: Mean=62.8722, 
+\hspace{\textwidth} 
+Standard deviation=16.5418}}
 \label{precisionv4survold}
 \end{table}
+\end{minipage}
+\begin{minipage}[H]{0.1\textwidth}
+\hspace{\textwidth}
+\end{minipage}
+\begin{minipage}[H]{0.45\textwidth}
 \begin{table}[H]
 \centering 
  \begin{tabular}{cccccc}
@@ -639,10 +665,14 @@ v4 precision: Mean=62.8722, Standard deviation=16.5418}}
  \bottomrule
 \end{tabular}
 \caption{\centering{Precision (=y [\%]) per SDG for v5 queries, based on the comprehensive survey. \hspace{\textwidth} 
-v5 precision: Mean=70.0502, Standard deviation=14.1167}}
+v5 precision: Mean=70.0502, 
+\hspace{\textwidth} 
+Standard deviation=14.1167}}
 \label{precisionv5survold}
 \end{table}
-The differences of the precision scores can be inferred from the bar chart in Figure \ref{precisionbarchart}. For 13 out of the 17 SDGs there is an (minor) improvement of the precision, 3 SDGs show a (minor) decrease, for one SDG it does not change. One should keep in mind that at this point the data for the v5 queries is rather limited.
+\end{minipage}
+
+The differences of the precision scores can be inferred from the bar chart in figure \ref{precisionbarchart}. For 13 out of the 17 SDGs there is an (minor) improvement of the precision, 3 SDGs show a (minor) decrease, for one SDG it does not change. One should keep in mind that at this point the data for the v5 queries is rather limited.
 We find lowest precision scores from the results of v5 queries for SDG 9 (51\%, based on the basic survey) and SDG 8 (40\%, based on the comprehensive survey). We find major improvements of the precision for SDGs 2 and 7 (from 31\% to 61\% and from 48\% to 80\%, respectively); on average, the precision increased from 63\% to 70\%.
 \begin{figure}[H]
 	\centering
@@ -717,7 +747,7 @@ v5 recall: Mean=14.6, Standard deviation=14.9}
         \caption{Recall data for v4 and v5 SDG queries:  Number of suggested publications in the surveyed SDG (source SDG, on vertical axis), that appear in the queried SDG results sets (target SDG, on horizontal axis). The entry in row $i$ and column $j$ gives the number of publications suggested by the researchers for SDG $i$, that were classified by our search queries to be in SDG $j$.}
 \end{figure}
 
-In figure \ref{subfig2} we can see a bright coloured column of SDG 13. This means that the papers in the query results of SDG 13 are appearing in lots of the suggested papers from the respondents, even more in the SDG 7 and SDG 5 suggested papers. This is an indication that the queries for SDG13 are defined more broadly than needed, or the topic of SDG13 (climate action) is much more interconnected with the research on the other SDG's SDG 15 (life on land) adn SDG 7 (clean energy). The other way around, looking at the rows we don't see a lot of bright coloured cells in that direction, which indicates the researchers have suggested papers that are more precisely relevant to the SDG they were expert in. looking at the interesting rows, the suggested papers for SDG 3 (health and well being) are not only captured in SDG 3 itself, but the same figure appears also in SDG 1 (zero hunger). It might look a bit worrying that the query for SDG 1 captures most of the papers related to SDG 3, but we need to remember that the responses for SDG 1 are 5 suggested papers, compared to the 1255 suggested papers for SDG 3. In that perspective the version 5 queries for SDG 3 have much improved compared to version 4, in figure \ref{subfig1} where the queries for SDG 2 (no poverty) were capturing 122 papers that were actually suggested to be related to SDG 3.
+In figure \ref{subfig2} we can see a bright coloured column of SDG 13. This means that the papers in the query results of SDG 13 are appearing in lots of the suggested papers from the respondents, even more in the SDG 7 and SDG 5 suggested papers. This is an indication that the queries for SDG 13 are defined more broadly than needed, or the topic of SDG 13 (climate action) is much more interconnected with the research on the other SDGs like SDG 15 (life on land) and SDG~7 (clean energy). The other way around, looking at the rows we don't see a lot of bright coloured cells in that direction, which indicates the researchers have suggested papers that are more precisely relevant to the SDG they were expert in. Looking at the interesting rows, the suggested papers for SDG 3 (health and well being) are not only captured in SDG 3 itself, but the same figure appears also in SDG 1 (zero hunger). It might look a bit worrying that the query for SDG 1 captures most of the papers related to SDG 3, but we need to remember that the responses for SDG 1 are 5 suggested papers, compared to the 1255 suggested papers for SDG 3. In that perspective the version 5 queries for SDG 3 have much improved compared to version 4, in figure \ref{subfig1} where the queries for SDG 2 (no poverty) were capturing 122 papers that were actually suggested to be related to SDG 3.
 
 
 \subsubsection{Accuracy: Combining precision and recall}
@@ -727,7 +757,7 @@ In this section we combine the outcomes of the precision and recall, which gives
     \text{F-score} = \frac{\text{precision}\cdot\text{recall}}{\text{precision}+\text{recall}}
 \end{equation*}
 
-This results in the following results:
+This results in the following findings:
 
 \begin{table}[H]
 \centering 
@@ -774,35 +804,32 @@ We want to know how or if that increase or decrease is related to the amount of 
 
 \begin{figure}[H]
 	\centering
-  \includegraphics[width=\textwidth]{figures/scatterplot1-fscore-robustness.pdf}
-	\caption{F-score change vs robustness of SDGs}
+  \includegraphics[width=0.7\textwidth]{figures/scatterplot1-fscore-robustness.pdf}
+	\caption{F-score change vs robustness of SDG queries: Dots more to the left shows that there are lots of new publications in an SDG result set in the version 5 queries, compared to the version 4. Dots more to the right are kept more or less the same. Dot more to top show that the accuracy of the SDG result set has improved in the version 5 queries, compared to version 4. Dots more to the bottom show that the accuracy got worse.}
 	\label{fscore-vs-robustnes}
+\end{figure}
+\begin{figure}[H]
+	\centering
+  \includegraphics[width=0.7\textwidth]{figures/bubblechart2.pdf}
+	\caption{Precision, recall and amount of publications suggested and selected by expert researchers for v4 and v5 queries. V4 SDGs in semi-transparent color, v5 SDGs in full colors. The iso-lines show the constant F-scores from 5 (bottom left) to 45 (top right). }
+	\label{bubblechart}
 \end{figure}
 
 We see in figure \ref{fscore-vs-robustnes} how the SDGs have improved or diminished in F-score in SDG queries version 5, and whether that required a small or big change of the publications in the SDG result sets to account for that effect.
 
 F-scores don't distinguish between precision and recall. To show if the accuracy is based on precision or the recall, we made a bubble plot for each version v4 and v5, where we plot the precision, recall and the tested sample sizes for each of the SDGs. 
 
+Here we see that our queries mainly moved to increase the precision, without big changes in the F-scores, at the cost of a low recall.
 
+This means \emph{the Aurora SDG queries version 5 collect a small number of papers, but the papers collected are in the majority of the cases relevant publications related to the SDG goals and targets.}
 
-\begin{figure}[H]
-	\centering
-  \includegraphics[width=\textwidth]{figures/bubblechart2.pdf}
-	\caption{Precision, recall and amount of publications suggested and selected by expert researchers for v4 and v5 queries. V4 SDGs in semi-transparent color, v5 SDGs in full colors. The iso-lines show the constant F-scores from 5 (bottom left) to 45 (top right). }
-	\label{bubblechart}
-\end{figure}
+\section{Conclusions \& Discussion}
+Overall we can conclude that changing the queries from version 4 to version 5 isn't really a ground breaking change where we would have liked to see a major migration of the SDG's to the top right corner in figure \ref{bubblechart}. What we can conclude is that we have made some important corrections to the queries so that they are precise enough to match the research publications what would generally speaking be expected in the result sets. This is demonstrating that the queries are build for precision, rather than recall. The advantage with a high precision query model is that the research publications you'll get are most of the time related to that SDG. The disadvantage of a low recall query model is that the queries are missing out lots of relevant research publications that should be in the result set.
 
-Here we see that our queries mainly moved to increase the precision, without big changes in the F-scores, at the cost of a low recall. 
+Having a labeled corpus aiming at precision of the labeling of the SDG goals, allows us to use the queries to generate a labeled corpus that can be used in machine learning \cite{zhang_matching_2020}.  To gain recall, we can feed the machine learning phase with a language model to label papers to an SDG that is closely related to similar semantic concepts. This is something we are unable to accomplish with boolean queries, due to the binary nature of a keyword search. This result gives confidence we have a solid foundation to build a machine learning model from the labeled corpus with the Aurora SDG queries version 5. 
 
-This means \emph{the Aurora SDG queries version 5 collect a small number of papers, but the papers collected are in the majority of the cases relevant publications related to the SDG Goals and Targets.}
-
-\section{Discussion \& Conclusions}
-What conclusions can we draw from the results. Are the questions answered?
-
-Having a labeled corpus aiming at precision of the labeling of the SDG goals, allows us to use the queries to generate a labeled corpus that can be used in Machine learning. \cite{zhang_matching_2020}  To gain recall, we can feed the machine learning phase with a language model to label papers to an SDG that is closely related to similar semantic concepts. This is something we are unable to accomplish with boolean queries, due to the binary nature of a keyword search. This result gives confidence we have a solid foundation to build a machine learning model from the labeled corpus with the Aurora SDG queries version 5. 
-
-With IDfuse \footnote{IDfuse is a Dutch startup that uses machine learning to improve grant proposal writing. \url{https://idfuse.nl/} } we did some early experimentation on enhancing the results of the query based model with machine learning using the widely used BERT model, retrained for Scientific content (SciBERT)\footnote{\url{https://github.com/allenai/scibert}}. 
-To train the SciBert model to label publications to the SDGs, IDfuse loaded the OpenAIRE Research Graph in to ElasticSearch, translated\footnote{Scopus to Elastic Search Translator: \url{https://github.com/martijnvanbeers/booque} for creating training corpus with OpenAIRE Research Graph} the Aurora queries version 5 from a Scopus Query Language to the ElasticSearch Query Language, and used the result sets to train the model.
+With IDfuse\footnote{IDfuse is a Dutch startup that uses machine learning to improve grant proposal writing. \url{https://idfuse.nl/} } we did some early experimentation on enhancing the results of the query based model with machine learning using the widely used BERT model, retrained for Scientific content (SciBERT)\footnote{\url{https://github.com/allenai/scibert}}. 
+To train the SciBert model to label publications to the SDGs, IDfuse loaded the OpenAIRE Research Graph in to ElasticSearch, translated\footnote{Scopus to Elastic Search Translator: \url{https://github.com/martijnvanbeers/booque} for creating training corpus with OpenAIRE Research Graph} the Aurora queries version 5 from a Scopus query language to the ElasticSearch query language, and used the result sets to train the model.
 
 \begin{figure}[H]
 	\centering
@@ -811,7 +838,7 @@ To train the SciBert model to label publications to the SDGs, IDfuse loaded the 
 	\label{BERTmodel}
 \end{figure}
 
-In figure \ref{BERTmodel} we see that the Keyword-search-only model (blue dots and bars) shows high precision (less false positives) and low recall (limited number of papers). The SciBERT-trained model (yellow/orange dots and bars) shows on the left chart a big increase of recall, at a slight cost of precision. Results on the right chart show a steep increase of the accuracy (F-score).
+In figure \ref{BERTmodel} we see that the keyword-search-only model (blue dots and bars) shows high precision (less false positives) and low recall (limited number of papers). The SciBERT-trained model (yellow/orange dots and bars) shows on the left chart a big increase of recall, at a slight cost of precision. Results on the right chart show a steep increase of the accuracy (F-score).
 
 This early experiment gives us confidence we can use such advanced language models to classify the SDGs, while increasing the number of research papers to be included in the result set for the SDGs, and that this larger result set will contain papers that are still relevant to the labeled SDGs.
 
@@ -823,5 +850,7 @@ Thanks to Maxime Rivest, Science Metrix, for sharing with us the graphs that he 
 
 \bibliographystyle{unsrt}  
 \bibliography{references}
+
+\doclicenseThis
 
 \end{document}
