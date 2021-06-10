@@ -36,6 +36,7 @@
   University of Duisburg-Essen\\
   Duisburg, Germany\\
   \texttt{felix.schmidt@uni-due.de} \\
+  ORCID: 0000-0002-9277-7954
   %% examples of more authors
    \And
 Maurice Vanderfeesten \\
@@ -43,7 +44,7 @@ Maurice Vanderfeesten \\
   Vrije Universiteit Amsterdam\\
   Amsterdam, The Netherlands \\
   \texttt{maurice.vanderfeesten@vu.nl} \\
-  \orcid{0000-0002-5119-3514}\\
+  ORCID: 0000-0002-5119-3514\\
   %% \AND
   %% Coauthor \\
   %% Affiliation \\
@@ -629,9 +630,9 @@ The precision can also be calculated based on the old comprehensive survey among
  \bottomrule
 \end{tabular}
 \caption{\centering{Precision (=y [\%]) per SDG for v4 queries, based on the comprehensive survey. \hspace{\textwidth}
-v4 precision: Mean=62.8722, 
+v4 precision: Mean=62.87, 
 \hspace{\textwidth} 
-Standard deviation=16.5418}}
+Standard deviation=16.54}}
 \label{precisionv4survold}
 \end{table}
 \end{minipage}
@@ -665,9 +666,9 @@ Standard deviation=16.5418}}
  \bottomrule
 \end{tabular}
 \caption{\centering{Precision (=y [\%]) per SDG for v5 queries, based on the comprehensive survey. \hspace{\textwidth} 
-v5 precision: Mean=70.0502, 
+v5 precision: Mean=70.05, 
 \hspace{\textwidth} 
-Standard deviation=14.1167}}
+Standard deviation=14.12}}
 \label{precisionv5survold}
 \end{table}
 \end{minipage}
@@ -677,8 +678,8 @@ We find lowest precision scores from the results of v5 queries for SDG 9 (51\%, 
 \begin{figure}[H]
 	\centering
   \includegraphics[width=0.75\textwidth]{figures/precisionbarchart.pdf}
-	\caption{\centering{Precision v4 vs v5, based on the comprehensive survey among researchers \hspace{\textwidth}
-	v4: mean=62.8722 standard deviation=16.5418 \hspace{\textwidth} v5: mean=70.0502 standard deviation=14.1167}
+	\caption{\centering{Precision v4 vs v5, based on the comprehensive survey among researchers. \hspace{\textwidth}
+	v4: mean=62.87 standard deviation=16.54 \hspace{\textwidth} v5: mean=70.05 standard deviation=14.12}
 }
 	\label{precisionbarchart}
 \end{figure}
@@ -713,8 +714,8 @@ The recall of the two versions of the query can be calculated from the publicati
  \bottomrule
 \end{tabular}
 \caption{\centering{Recall per SDG, based on the comprehensive survey.\hspace{\textwidth}
-v4 recall: Mean=14.6, Standard deviation=15.4 \hspace{\textwidth}
-v5 recall: Mean=14.6, Standard deviation=14.9}
+v4 recall: Mean=14.63, Standard deviation=15.44 \hspace{\textwidth}
+v5 recall: Mean=14.59, Standard deviation=14.92}
 }
 \label{recalltable}
 \end{table}
@@ -725,7 +726,7 @@ v5 recall: Mean=14.6, Standard deviation=14.9}
 \begin{figure}[H]
 	\centering
   \includegraphics[width=0.75\textwidth]{figures/recallbarchart.pdf}
-	\caption{Recall v4 vs v5, based on the comprehensive survey among researchers.}
+	\caption{Recall v4 vs v5, based on the comprehensive survey among researchers. The solid lines represent the respective mean values.}
 	\label{recallbarchart}
 \end{figure}
 
@@ -765,7 +766,7 @@ This results in the following findings:
 \toprule
 &&\multicolumn{3}{c}{v4}&&\multicolumn{3}{c}{v5}\\
 \cline{3-5} \cline{7-9}
-SDG && precision & recall & F-score && precision & recall & F-score \\
+SDG && recall & precision & F-score && recall & precision & F-score \\
  \hline
  1 && 0.00 & 100.00 & 0.00 && 20.00 & 100.00 & 33.33 \\
  2 && 33.71 & 31.00 & 32.30 && 24.72 & 63.46 & 35.58 \\
@@ -784,6 +785,9 @@ SDG && precision & recall & F-score && precision & recall & F-score \\
  15 && 9.93 & 70.35 & 17.40 && 10.99 & 68.21 & 18.93 \\
  16 && 22.50 & 72.56 & 34.35 && 6.25 & 74.71 & 11.54 \\
  17 && 9.43 & 36.06 & 14.96 && 13.21 & 42.77 & 20.18 \\
+ \hline
+ mean && 14.63 & 62.87 & 20.04 && 14.59 & 70.05 & 21.34 \\
+ standard deviation && 15.44 & 16.54 & 17.05 && 14.92 & 14.12 & 16.68\\
  \bottomrule
 \end{tabular}
 \caption{Precision, recall and F-score for v4 and v5 queries.}
@@ -794,11 +798,12 @@ Figure \ref{f1barchart} shows the F-scores of the SDG queries of the different v
 \begin{figure}[H]
 	\centering
   \includegraphics[width=0.75\textwidth]{figures/f1barchart.pdf}
-	\caption{F-score v4 vs v5}
+	\caption{F-score v4 vs v5. The solid lines represent the respective mean values.}
 	\label{f1barchart}
 \end{figure}
 
-Here we see that for SDGs 1, 2, 13, 14 and 16 we have higher F-scores compared to the other SDGs. We also see that some SDGs F-scores increased and decreased from version 4 to version 5.
+Calculating the F-scores for both versions, we learn that there is a small increase in accuracy when looking at the averages of all SDG's for each query version. F=20 for version 4, and F=21 for version 5. While the recall for both versions remain the same around 14, we see that on average there is an increase of the precision of 63 in version 4 to 70 in version 5. 
+Looking at the individual SDG's we see that for SDGs 1, 2, 13, 14 and 16 we have higher F-scores compared to the other SDGs. We also see that some SDGs F-scores decreased from version 4 to version 5.
 
 We want to know how or if that increase or decrease is related to the amount of change of the publications in the result sets of each SDG. We combined the change of F-score between v4 and v5 from table \ref{precisiondatatab} with the robustness score of table \ref{robustnesstable}, resulting in the following chart. 
 
@@ -824,6 +829,8 @@ Here we see that our queries mainly moved to increase the precision, without big
 This means \emph{the Aurora SDG queries version 5 collect a small number of papers, but the papers collected are in the majority of the cases relevant publications related to the SDG goals and targets.}
 
 \section{Conclusions \& Discussion}
+The accuracy of the query version v4 compared to version 5 increased a little, F=20 for version 4, and F=21 for version 5. While the recall for both versions remain the same around 14\%, we see that on average there is an increase of the precision of 63\% in version 4 to 70\% in version 5.
+
 Overall we can conclude that changing the queries from version 4 to version 5 isn't really a ground breaking change where we would have liked to see a major migration of the SDG's to the top right corner in figure \ref{bubblechart}. What we can conclude is that we have made some important corrections to the queries so that they are precise enough to match the research publications what would generally speaking be expected in the result sets. This is demonstrating that the queries are build for precision, rather than recall. The advantage with a high precision query model is that the research publications you'll get are most of the time related to that SDG. The disadvantage of a low recall query model is that the queries are missing out lots of relevant research publications that should be in the result set.
 
 Having a labeled corpus aiming at precision of the labeling of the SDG goals, allows us to use the queries to generate a labeled corpus that can be used in machine learning \cite{zhang_matching_2020}.  To gain recall, we can feed the machine learning phase with a language model to label papers to an SDG that is closely related to similar semantic concepts. This is something we are unable to accomplish with boolean queries, due to the binary nature of a keyword search. This result gives confidence we have a solid foundation to build a machine learning model from the labeled corpus with the Aurora SDG queries version 5. 
